@@ -1,0 +1,40 @@
+{
+    "user": "my.git.user",
+    "pass": "my.git.password",
+    "protocol": "https",
+    "baseUrl": "www.domain.com/git",
+    "limitDaysBefore": 1,
+    "localeDate": "pt-BR",
+    "cron": "0 22 * * *",
+    "send": {
+        "accepted": false,
+        "notAccepted": true
+    },
+    "mailer": {
+        "host": "smtp.gmail.com",
+        "port": 587,
+        "user": "my.email.user.@gmail.com",
+        "pass": "my.email.password",
+        "from": "my.email.user.@gmail.com",
+        "to": "send.to.this.email@gmail.com",
+        "subject": "Commits doens't match",
+        "messageOk": "Everything ok"
+    },
+    "patterns": [
+        "^feat:",
+        "^bug:",
+        "^release: [0-9][0-9]_[0-9][0-9][0-9]"
+    ],
+    "repositories": [
+        {
+            "name": "foo-bar-backend",
+            "branch": "main",
+            "url": "group-abc/foo-bar-backend.git"
+        },
+        {
+            "name": "foo-bar-frontend",
+            "branch": "main",
+            "url": "group-abc/foo-bar-frontend.git"
+        }
+    ]
+}
