@@ -74,7 +74,7 @@ const checkCommits = async (repository) => {
   let commitsNotAccepted = [];
   let commitsAccepted = [];
 
-  const child = spawn('git', ['-C', `${WORKSPACE_FOLDER}/${repository.name}`, 'log', `--pretty=format:{"subject": "%f", "commiter": "%cN", "date": "%cD", "email": "%cE"},`]);
+  const child = spawn('git', ['-C', `${WORKSPACE_FOLDER}/${repository.name}`, 'log', `--pretty=format:{££££subject££££: ££££%s££££, ££££commiter££££: ££££%cN££££, ££££date££££: ££££%cD££££, ££££email££££: ££££%cE££££},`]);
 
   let data = '';
   for await (const chunk of child.stdout) {
@@ -94,6 +94,16 @@ const checkCommits = async (repository) => {
 
   if (data) {
     dataJSONString = '[' + data.slice(0, -1) + ']';
+
+    let arrayData = dataJSONString.split('"');
+    dataJSONString = arrayData.join('\\"');
+
+    arrayData = dataJSONString.split('££££');
+    dataJSONString = arrayData.join('"');
+
+    arrayData = dataJSONString.split('	');
+    dataJSONString = arrayData.join(' ');
+
     dataJSON = JSON.parse(dataJSONString);
   }
 
